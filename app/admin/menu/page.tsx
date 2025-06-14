@@ -190,6 +190,9 @@ export default function MenuManagement() {
     "Desserts",
     "Beverages",
     "Specials",
+    "Soups",
+    "Starch",
+    "Proteins",
   ];
 
   return (
