@@ -77,6 +77,14 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ tableNumber }) => {
     }
   };
 
+  // Format price using Intl.NumberFormat
+  const formatPrice = (price: number) =>
+    new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 2,
+    }).format(price);
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -116,8 +124,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ tableNumber }) => {
                     <div className="flex-1">
                       <h4 className="font-medium text-gray-900">{item.name}</h4>
                       <p className="text-sm text-gray-600">
-                        {" "}
-                        ₦{item.price.toFixed(2)}
+                        {formatPrice(item.price)}
                       </p>
                     </div>
 
@@ -182,7 +189,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ tableNumber }) => {
                 <div className="flex justify-between text-lg font-semibold">
                   <span>Total</span>
                   <span className="text-amber-600">
-                    ₦{totalPrice.toFixed(2)}
+                    {formatPrice(totalPrice)}
                   </span>
                 </div>
               </div>

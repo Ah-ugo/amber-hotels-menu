@@ -125,6 +125,14 @@ export default function OrderManagement() {
     }, 0);
   };
 
+  // Format price using Intl.NumberFormat
+  const formatPrice = (price: number) =>
+    new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 2,
+    }).format(price);
+
   const filteredOrders = orders.filter(
     (order) => statusFilter === "all" || order.status === statusFilter
   );
@@ -244,10 +252,9 @@ export default function OrderManagement() {
                               </p>
                             </div>
                             <p className="font-medium text-amber-600">
-                              ₦
-                              {(
+                              {formatPrice(
                                 getItemPrice(item.item_id) * item.quantity
-                              ).toFixed(2)}
+                              )}
                             </p>
                           </div>
                         ))}
@@ -272,7 +279,7 @@ export default function OrderManagement() {
                         <p className="text-lg font-bold text-gray-900">
                           Total:{" "}
                           <span className="text-amber-600">
-                            ₦{calculateOrderTotal(order).toFixed(2)}
+                            {formatPrice(calculateOrderTotal(order))}
                           </span>
                         </p>
                       </div>

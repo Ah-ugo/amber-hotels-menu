@@ -40,6 +40,13 @@ export const MenuCard: React.FC<MenuCardProps> = ({
     }
   };
 
+  // Format price using Intl.NumberFormat
+  const formattedPrice = new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    minimumFractionDigits: 2,
+  }).format(item.price);
+
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
       <div className="aspect-video relative overflow-hidden">
@@ -65,7 +72,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({
         </h3>
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold text-amber-600">
-            ₦{item.price.toFixed(2)}
+            {formattedPrice}
           </span>
 
           {isCustomer && (

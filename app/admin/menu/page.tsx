@@ -168,6 +168,14 @@ export default function MenuManagement() {
     setEditingItem(null);
   };
 
+  // Format price using Intl.NumberFormat
+  const formatPrice = (price: number) =>
+    new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 2,
+    }).format(price);
+
   if (authLoading || !isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -356,7 +364,7 @@ export default function MenuManagement() {
                     {item.name}
                   </h3>
                   <p className="text-2xl font-bold text-amber-600 mb-4">
-                    ₦{item.price.toFixed(2)}
+                    {formatPrice(item.price)}
                   </p>
 
                   <div className="flex space-x-2">
